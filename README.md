@@ -33,9 +33,9 @@ To run this as a development enviroment you must download and setup golang.
 ```Postman collection is included in the build folder just import and use```
 
 ## Run Test
-
+***From the root of the project***
 ``` 
-  cd into the controllers folder
+  cd controllers
   go test 
 ```
 
