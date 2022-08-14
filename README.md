@@ -38,6 +38,3 @@ To run this as a development enviroment you must download and setup golang.
   cd controllers
   go test 
 ```
-
-
-## Run Test
