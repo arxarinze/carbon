@@ -21,6 +21,7 @@ To run this as a development enviroment you must download and setup golang.
 
 ## Just Want To Run The Project
 ***A binary has been setup for you in the repo under build***
+
 ***change .env.example to .env and add into the folder for your os e.g osx/x64/.env***
 
 ### Linux/Mac
