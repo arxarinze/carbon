@@ -34,8 +34,10 @@ To run this as a development enviroment you must download and setup golang.
 
 ## Run Test
 
-``` cd into the controllers folder ```
-``` go test ```
+``` 
+  cd into the controllers folder
+  go test 
+```
 
 
 ## Run Test
