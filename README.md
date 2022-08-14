@@ -12,9 +12,10 @@ To run this as a development enviroment you must download and setup golang.
 
 ***After setting up golang open project root in vscode and use terminal to run these commands:***
 
-* 
+```
   go mod tidy
   go run main.go
+```
 
 
 
