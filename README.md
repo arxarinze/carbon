@@ -23,14 +23,19 @@ To run this as a development enviroment you must download and setup golang.
 ***A binary has been setup for you in the repo under build***
 
 ### Linux/Mac
-* ./carbon
+``` ./carbon ```
 
 ### Windows
-***Run the .exe file***
+```Run the .exe file```
 
 
 ## Postman Collection
-***Postman collection is included in the build folder just import and use***
+```Postman collection is included in the build folder just import and use```
+
+## Run Test
+
+``` cd into the controllers folder ```
+``` go test ```
 
 
 ## Run Test
