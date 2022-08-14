@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "f41b5626-cdf0-4702-874e-36e2ab5ea6c5",
+		"name": "Carbon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18523297"
+	},
+	"item": [
+		{
+			"name": "Paste",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\":\"sdasdsa\",\n    \"expiry\":\"sadasdasd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4100/api/v1/paste",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4100",
+							"path": [
+								"api",
+								"v1",
+								"paste"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
