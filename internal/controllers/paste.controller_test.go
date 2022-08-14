@@ -34,3 +34,32 @@ func Test_pasteController_Create(t *testing.T) {
 		})
 	}
 }
+
+func Test_pasteController_View(t *testing.T) {
+	type fields struct {
+		ctx       context.Context
+		pasteRepo repo.PasteRepo
+	}
+	type args struct {
+		c *fiber.Ctx
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &pasteController{
+				ctx:       tt.fields.ctx,
+				pasteRepo: tt.fields.pasteRepo,
+			}
+			if err := p.View(tt.args.c); (err != nil) != tt.wantErr {
+				t.Errorf("pasteController.View() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
