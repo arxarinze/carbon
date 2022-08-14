@@ -37,6 +37,6 @@ To run this as a development enviroment you must download and setup golang.
 ## Run Test
 ***From the root of the project***
 ``` 
-  cd services
+  cd internal/services
   go test 
 ```
