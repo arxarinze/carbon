@@ -2,7 +2,10 @@ module carbon
 
 go 1.18
 
-require github.com/gofiber/fiber/v2 v2.36.0
+require (
+	github.com/gofiber/fiber/v2 v2.36.0
+	github.com/golang/mock v1.6.0
+)
 
 require (
 	github.com/jinzhu/inflection v1.0.0 // indirect

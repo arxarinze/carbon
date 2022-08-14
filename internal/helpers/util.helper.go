@@ -28,8 +28,8 @@ func Base58Encoded(bytes []byte) string {
 	return string(encoded)
 }
 
-func GenerateUrl(expiry string, text string) string {
-	data := expiry + text + time.Now().String()
+func GenerateUrl(expiry string, text string, time time.Time) string {
+	data := expiry + text + time.String()
 	byt := Sha256Of(data)
 	generatedNumber := new(big.Int).SetBytes(byt).Uint64()
 	url := Base58Encoded([]byte(fmt.Sprintf("%d", generatedNumber)))

@@ -2,12 +2,10 @@ package controllers
 
 import (
 	"carbon/internal/interfaces"
-	"carbon/internal/models"
+	"carbon/internal/repo"
+	"carbon/internal/services"
 	"context"
 	"time"
-
-	"carbon/internal/helpers"
-	"carbon/internal/repo"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -18,8 +16,9 @@ type PasteController interface {
 }
 
 type pasteController struct {
-	ctx       context.Context
-	pasteRepo repo.PasteRepo
+	ctx          context.Context
+	pasteRepo    repo.PasteRepo
+	pasteService services.PasteService
 }
 
 // Create implements PasteController
@@ -27,18 +26,7 @@ func (p *pasteController) Create(c *fiber.Ctx) error {
 	payload := new(interfaces.PasteRequest)
 	c.BodyParser(&payload)
 
-	url := helpers.GenerateUrl(payload.Expiry, payload.Text)
-	etime, err := helpers.GenerateIfTime(payload.Expiry)
-	if err != nil {
-		return c.Status(500).JSON(map[string]string{
-			"error": "wrong time format use yyyy-mm-dd",
-		})
-	}
-	err = p.pasteRepo.CreatePaste(&models.Paste{
-		Url:    url,
-		Text:   payload.Text,
-		Expiry: etime,
-	})
+	url, err := p.pasteService.Create(*payload, time.Now())
 	if err != nil {
 		return c.Status(500).JSON(map[string]string{
 			"error": err.Error(),
@@ -52,32 +40,20 @@ func (p *pasteController) Create(c *fiber.Ctx) error {
 // View implements PasteController
 func (p *pasteController) View(c *fiber.Ctx) error {
 	url := c.Params("url")
-	view, err := p.pasteRepo.ViewPasteByUrl(url)
+	data, err := p.pasteService.View(url)
 	if err != nil {
-		return c.Status(404).JSON(map[string]string{
-			"error": "Not Found",
+		return c.Status(500).JSON(map[string]string{
+			"error": err.Error(),
 		})
 	}
-	stat := view.Expiry
-	if !stat.Valid {
-		return c.JSON(map[string]string{
-			"text": view.Text,
-		})
-	}
-	checkTime := view.Expiry.Time
-	if checkTime.Before(time.Now()) {
-		return c.Status(404).JSON(map[string]string{
-			"error": "Expired",
-		})
-	}
-	return c.JSON(map[string]string{
-		"text": view.Text,
-	})
+	return c.JSON(data)
 }
 
 func NewPasteController(ctx context.Context, repo repo.PasteRepo) PasteController {
+	service := services.NewPasteService(ctx, repo)
 	return &pasteController{
 		ctx,
 		repo,
+		service,
 	}
 }
